@@ -1,0 +1,4 @@
+export const ROUTER_KEY = {
+  MOVIES: 'MOVIES',
+  MOVIE_DETAIL: 'MOVIE_DETAIL',
+};

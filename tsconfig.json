@@ -1,0 +1,14 @@
+{
+  "presets": ["@babel/preset-react"],
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "*":["src/*"]
+    },
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true
+  },
+  "extends": "@react-native/typescript-config/tsconfig.json"
+}

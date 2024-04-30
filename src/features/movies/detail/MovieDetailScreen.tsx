@@ -31,9 +31,10 @@ type Props = {
 };
 
 const MovieDetailScreen = (props: Props) => {
-  const {movieDetail, movieReviews} = useMovieDetailFunctions(props);
+  const movieId = props.route?.params?.movie?.id;
+  const {movieDetail, movieReviews, isLoading, onRefresh} =
+    useMovieDetailFunctions(movieId);
 
-  const [isLoading, setLoading] = useState(false);
   const [scrollYState] = useState(
     new Animated.Value(Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0),
   );
@@ -205,10 +206,7 @@ const MovieDetailScreen = (props: Props) => {
         refreshControl={
           <RefreshControl
             refreshing={isLoading}
-            onRefresh={() => {
-              setLoading(true);
-              setTimeout(() => setLoading(false), 1000);
-            }}
+            onRefresh={onRefresh}
             // Android offset for RefreshControl
             progressViewOffset={HEADER_MAX_HEIGHT}
           />

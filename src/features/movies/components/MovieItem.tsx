@@ -1,7 +1,6 @@
 import React, {useCallback} from 'react';
 import {Image, StyleSheet, View, TouchableOpacity} from 'react-native';
 
-import {appStore} from 'stores';
 import {color} from 'core/theme';
 import {MovieType} from 'core/types';
 import {width, height} from 'core/utils';
@@ -10,6 +9,7 @@ import {ROUTER_KEY} from 'core/constants';
 import {navigationServices} from 'services';
 import {Text12, Text14, Text24} from 'components';
 import {IMAGE_BASE_URL} from 'configs';
+import {movieSDK} from 'moviesdk';
 
 type Props = {
   item: MovieType;
@@ -17,7 +17,7 @@ type Props = {
 
 const MovieItem = (props: Props) => {
   const {item} = props;
-  const {genreList} = appStore.movie;
+  const {genreList} = movieSDK.movieStore;
   const gotoDetail = useCallback(() => {
     navigationServices.pushToScreen(ROUTER_KEY.MOVIE_DETAIL, {
       movie: isUndefined(item?.id) ? item?.item : item,

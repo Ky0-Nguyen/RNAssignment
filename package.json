@@ -21,6 +21,7 @@
     "mobx": "^6.12.3",
     "mobx-react": "^9.1.1",
     "mobx-react-lite": "^4.0.7",
+    "moviesdk": "^0.0.4",
     "react": "18.2.0",
     "react-native": "0.74.0",
     "react-native-gesture-handler": "^2.16.0",

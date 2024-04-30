@@ -1,30 +1,18 @@
-import {get} from 'lodash';
-import {useEffect, useState} from 'react';
-import {fetchGenreList, fetchMovieList} from 'services/api';
-import {appStore} from 'stores';
+import {movieSDK} from 'moviesdk';
+import {useCallback, useEffect} from 'react';
 
 export const useMovieFunctions = () => {
-  const [isLoading, setLoading] = useState(false);
-  const {movieList, movieListSearch} = appStore.movie;
+  const init = useCallback(async () => {
+    await movieSDK.fetchMovies();
+  }, []);
 
   useEffect(() => {
-    const init = async () => {
-      try {
-        setLoading(true);
-        const res = await fetchMovieList();
-        const responseGenre = await fetchGenreList();
-        appStore.movie.setMovieList(get(res, 'results'));
-        appStore.movie.setGenreList(get(responseGenre, 'genres'));
-      } catch (error) {
-      } finally {
-        setLoading(false);
-      }
-    };
     init();
-  }, []);
+  }, [init]);
   return {
-    isLoading,
-    movieList,
-    movieListSearch,
+    isLoading: movieSDK.movieStore.loading,
+    movieList: movieSDK.movieStore.movieList,
+    movieListSearch: movieSDK.movieStore.movieListSearch,
+    onRefresh: init,
   };
 };

@@ -1,8 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Image} from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import {color} from 'core/theme';
+import {StyleSheet, View, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 type Props = {
   size: number;

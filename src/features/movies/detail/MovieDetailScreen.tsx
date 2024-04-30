@@ -154,9 +154,9 @@ const MovieDetailScreen = (props: Props) => {
           {'Product companies'}
         </Text26>
         {productionCompanies && productionCompanies.length > 0 ? (
-          productionCompanies.map(company => {
+          productionCompanies.map((company, idx) => {
             return (
-              <View style={styles.companyInfo} key={company?.id}>
+              <View style={styles.companyInfo} key={`${company?.id}${idx}`}>
                 <Text14 regular style={styles.textTitle}>
                   Name: {company?.name}
                   {` (${company.origin_country})`}
@@ -186,8 +186,8 @@ const MovieDetailScreen = (props: Props) => {
               style={StyleSheet.flatten([styles.textTitle, {marginTop: 32}])}>
               {'Reviews'}
             </Text26>
-            {movieReviews.map((review: MovieReviewType) => {
-              return <MovieReview item={review} />;
+            {movieReviews.map((review: MovieReviewType, idx) => {
+              return <MovieReview key={`${review?.id}${idx}`} item={review} />;
             })}
           </>
         ) : (

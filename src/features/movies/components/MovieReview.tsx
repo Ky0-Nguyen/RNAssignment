@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   rowComment: {
-    flexWrap: 'wrap',
     width: width(100) - 32,
     flexDirection: 'column',
   },

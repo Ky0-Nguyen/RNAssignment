@@ -5,6 +5,7 @@ import {
   Platform,
   RefreshControl,
   StatusBar,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -145,7 +146,9 @@ const MovieDetailScreen = (props: Props) => {
         ) : (
           <View />
         )}
-        <Text26 bold style={styles.textTitle}>
+        <Text26
+          bold
+          style={StyleSheet.flatten([styles.textTitle, {marginTop: 32}])}>
           {'Product companies'}
         </Text26>
         {productionCompanies && productionCompanies.length > 0 ? (
@@ -157,6 +160,7 @@ const MovieDetailScreen = (props: Props) => {
                   {` (${company.origin_country})`}
                 </Text14>
                 <Image
+                  resizeMode={'stretch'}
                   style={styles.logo}
                   source={{
                     uri: `https://image.tmdb.org/t/p/w500${company?.logo_path}`,

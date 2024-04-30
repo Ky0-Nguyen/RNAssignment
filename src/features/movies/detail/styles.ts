@@ -102,6 +102,8 @@ export default StyleSheet.create({
   },
   logo: {
     height: 200,
+    marginTop: 16,
+    marginBottom: 32,
     width: width(100) - 32,
   },
 });

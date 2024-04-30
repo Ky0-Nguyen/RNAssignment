@@ -77,24 +77,10 @@ export default StyleSheet.create({
   textTag: {
     color: color.text,
   },
-  tag: {
-    width: '100%',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    paddingVertical: 16,
-  },
-  genre: {
-    marginRight: 8,
-    marginTop: 8,
-    padding: 8,
-    paddingHorizontal: 16,
-    borderRadius: 24,
-    backgroundColor: color.palette.lightGreen,
-  },
   containerInfo: {
     paddingVertical: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   childInfo: {
     alignItems: 'center',

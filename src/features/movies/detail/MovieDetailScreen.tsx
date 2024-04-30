@@ -11,19 +11,19 @@ import {
   View,
 } from 'react-native';
 
-import {observer} from 'mobx-react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import styles, {HEADER_MAX_HEIGHT, HEADER_SCROLL_DISTANCE} from './styles';
-import {color} from 'core/theme';
-import {navigationServices} from 'services';
-import {useMovieDetailFunctions} from './useFunctions';
-import {Text12, Text14, Text16, Text26, Text32} from 'components';
-import {find, isObject, toString} from 'lodash';
 import {appStore} from 'stores';
+import {color} from 'core/theme';
+import {observer} from 'mobx-react';
 import {timeConvert} from 'core/utils';
 import {IMAGE_BASE_URL} from 'configs';
-import {MovieReviewType} from 'core/types';
 import {MovieReview} from '../components';
+import {MovieReviewType} from 'core/types';
+import {navigationServices} from 'services';
+import MovieTag from '../components/MovieTag';
+import {useMovieDetailFunctions} from './useFunctions';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Text12, Text14, Text16, Text26, Text32} from 'components';
+import styles, {HEADER_MAX_HEIGHT, HEADER_SCROLL_DISTANCE} from './styles';
 
 type Props = {
   navigation: any;
@@ -89,22 +89,7 @@ const MovieDetailScreen = (props: Props) => {
             {`${movieDetail?.vote_average}/10   Count: ${movieDetail?.vote_count}`}
           </Text12>
         </View>
-        <View style={styles.tag}>
-          {genres.map((i: any, idx: number) => {
-            let genre = find(genreList, a => a.id === i);
-            if (isObject(i)) {
-              genre = i;
-            }
-            return (
-              <View key={toString(`${genre?.id}${idx}`)} style={styles.genre}>
-                <Text14 regular style={styles.textTag}>
-                  {genre?.name}
-                </Text14>
-              </View>
-            );
-          })}
-        </View>
-
+        <MovieTag genres={genres} genreList={genreList} />
         <View style={styles.containerInfo}>
           {movieDetail?.runtime ? (
             <View style={styles.childInfo}>
@@ -128,11 +113,6 @@ const MovieDetailScreen = (props: Props) => {
           ) : (
             <View />
           )}
-
-          <View style={styles.childInfo}>
-            <Text16 style={styles.textTag}>{'Rating'}</Text16>
-            <Text16 style={styles.textTag}>{'Length'}</Text16>
-          </View>
         </View>
 
         <Text26 bold style={styles.textTitle}>

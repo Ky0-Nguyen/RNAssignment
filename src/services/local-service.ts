@@ -17,14 +17,6 @@ class LocalService {
     const jsonObject = jsonString ? JSON.parse(jsonString) : '';
     Object.assign(this, jsonObject);
   };
-
-  //   public updateOTC = async (newValue: {
-  //     actionIdentifier: string;
-  //     phone: string;
-  //   }) => {
-  //     this.otc = newValue;
-  //     await this.save();
-  //   };
 }
 
 const localService = new LocalService();

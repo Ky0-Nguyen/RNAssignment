@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
   rowComment: {
     flexWrap: 'wrap',
+    width: width(100) - 32,
     flexDirection: 'column',
   },
 });

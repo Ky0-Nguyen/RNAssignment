@@ -11,7 +11,6 @@ export const useMovieDetailFunctions = (props: {
     const init = async () => {
       const res = await fetchMovieDetail(movie?.id ?? '');
       setMovieDetail(res);
-      console.log('res', res);
     };
     init();
   }, [movie?.id]);

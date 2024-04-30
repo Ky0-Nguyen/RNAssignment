@@ -35,6 +35,12 @@ const arrayToObject = (array: any[]) => {
   );
 };
 
+const timeConvert = (num: number) => {
+  var hours = Math.floor(num / 60);
+  var minutes = num % 60;
+  return `${hours}h` + ' ' + `${minutes}min`;
+};
+
 export {
   enabledFormSheet,
   RealRatio,
@@ -49,4 +55,5 @@ export {
   SCREEN_WIDTH,
   SCREEN_HEIGHT,
   arrayToObject,
+  timeConvert,
 };

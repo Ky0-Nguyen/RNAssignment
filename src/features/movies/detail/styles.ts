@@ -46,7 +46,8 @@ export default StyleSheet.create({
   },
   scrollViewContent: {
     // iOS uses content inset, which acts like padding.
-    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0,
+    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT + 50 : 50,
+    paddingHorizontal: 16,
   },
   row: {
     height: 40,
@@ -60,5 +61,47 @@ export default StyleSheet.create({
     elevation: 2,
     position: 'absolute',
     left: 4,
+  },
+  textTitle: {
+    color: color.text,
+  },
+  textRate: {
+    left: 8,
+    color: color.subText,
+  },
+  containerRate: {
+    marginTop: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textTag: {
+    color: color.text,
+  },
+  tag: {
+    width: '100%',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    paddingVertical: 16,
+  },
+  genre: {
+    marginRight: 8,
+    marginTop: 8,
+    padding: 8,
+    paddingHorizontal: 16,
+    borderRadius: 24,
+    backgroundColor: color.palette.lightGreen,
+  },
+  containerInfo: {
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  childInfo: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    height: 200,
+    width: width(100) - 32,
   },
 });

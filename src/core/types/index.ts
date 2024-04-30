@@ -11,4 +11,19 @@ export type MovieType = {
   release_date?: string;
   genre_ids?: number[];
   item?: any;
+  genres?: {id: number | string; name: string}[];
+  overview?: string;
+  homepage?: string;
+  spoken_languages?: {
+    english_name: string;
+    iso_639_1: string;
+    name: string;
+  }[];
+  runtime?: number;
+  production_companies?: {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+  }[];
 };

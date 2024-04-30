@@ -21,4 +21,5 @@ export const palette = {
   silver: '#9F9F9F',
   red: '#FF0000',
   lightGreen: '#83BA8E',
+  yellow: '#FFD700',
 };

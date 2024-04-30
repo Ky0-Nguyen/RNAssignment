@@ -16,7 +16,6 @@ type Props = {
 const MovieReview = (props: Props) => {
   const {item} = props;
   const arrRating = Array.from(Array(item?.author_details?.rating ?? 0).keys());
-  console.log('arrRating', arrRating.length);
   const renderRating = () => {
     return (
       <View style={styles.rowRating}>

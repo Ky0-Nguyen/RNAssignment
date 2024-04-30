@@ -37,7 +37,6 @@ const MovieDetailScreen = (props: Props) => {
   const [scrollYState] = useState(
     new Animated.Value(Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0),
   );
-  console.log('movieReviews', movieReviews);
 
   const scrollY = Animated.add(
     scrollYState,

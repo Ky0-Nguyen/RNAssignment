@@ -1,0 +1,27 @@
+{
+  "name": "rnsdk-utils",
+  "version": "0.0.2",
+  "description": "Utils of react native project",
+  "main": "index.ts",
+  "scripts": {
+    "test": "test all functions in utils"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ky0-Nguyen/rnsdk-utils.git"
+  },
+  "devDependencies": {
+    "react": "18.2.0",
+    "react-native": "0.74.0",
+    "typescript": "^5.4.5"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "Tuan Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ky0-Nguyen/rnsdk-utils/issues"
+  },
+  "homepage": "https://github.com/Ky0-Nguyen/rnsdk-utils#readme"
+}

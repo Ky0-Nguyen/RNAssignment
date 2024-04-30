@@ -3,7 +3,7 @@ import {StyleSheet, TextInput, View} from 'react-native';
 
 import Fuse from 'fuse.js';
 import {find} from 'lodash';
-import {width} from 'core/utils';
+import {width} from 'rnsdk-utils';
 import {color} from 'core/theme';
 import {appStore} from 'stores';
 

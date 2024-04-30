@@ -14,6 +14,13 @@ export const fetchMovieDetail = async (movieId: string | number) => {
   return get(res, 'data');
 };
 
+export const fetchMovieReviews = async (movieId: string | number) => {
+  const res = await BaseAPI.get(
+    API_ENDPOINT.MOVIE_REVIEWS.replace('{movie_id}', toString(movieId)),
+  );
+  return get(res, 'data');
+};
+
 export const fetchGenreList = async () => {
   const res = await BaseAPI.get(API_ENDPOINT.GENRE_LIST);
   return get(res, 'data');

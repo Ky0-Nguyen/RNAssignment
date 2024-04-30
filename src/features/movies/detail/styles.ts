@@ -106,4 +106,12 @@ export default StyleSheet.create({
     marginBottom: 32,
     width: width(100) - 32,
   },
+  line: {
+    width: '100%',
+    height: 1,
+    backgroundColor: color.line,
+  },
+  companyInfo: {
+    marginTop: 16,
+  },
 });

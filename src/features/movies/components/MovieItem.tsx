@@ -9,6 +9,7 @@ import {find, isUndefined} from 'lodash';
 import {ROUTER_KEY} from 'core/constants';
 import {navigationServices} from 'services';
 import {Text12, Text14, Text24} from 'components';
+import {IMAGE_BASE_URL} from 'configs';
 
 type Props = {
   item: MovieType;
@@ -34,7 +35,7 @@ const MovieItem = (props: Props) => {
       <View style={styles.itemContainer}>
         <Image
           source={{
-            uri: `https://image.tmdb.org/t/p/w500${posterPath}`,
+            uri: `${IMAGE_BASE_URL}${posterPath}`,
           }}
           style={styles.image}
         />

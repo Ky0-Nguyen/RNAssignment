@@ -1,5 +1,6 @@
 import axios, {Method} from 'axios';
 import {HTTP_STATUS} from './http-status';
+import {BASE_URL, M_TOKEN} from 'configs';
 
 const METHOD_GET = 'GET';
 const METHOD_POST = 'POST';
@@ -29,8 +30,7 @@ class BaseAPI {
   public requestAPI = async (props: PropsParams) => {
     const {actionURL, method, dataBody, headers, params} = props;
     headers['Content-Type'] = 'application/json';
-    headers.Authorization =
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MjRiZWVmNDY3ZTU5NDlkMGYwY2ViNmNkMmFlMjUxNiIsInN1YiI6IjY2MmY0NjY0OGE4OGIyMDEyYWNlYmJjNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hBlkp6NRtm31DUzNUdQca8SurVrVVShzZAlK_kFj2hM';
+    headers.Authorization = `Bearer ${M_TOKEN}`;
 
     let config: AxiosConfig = {
       params,
@@ -38,7 +38,7 @@ class BaseAPI {
       timeout: 5000,
       headers,
       url: actionURL,
-      baseURL: 'https://api.themoviedb.org/3',
+      baseURL: BASE_URL,
     };
     if (dataBody) {
       config = {

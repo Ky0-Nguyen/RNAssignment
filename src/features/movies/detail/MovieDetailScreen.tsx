@@ -21,6 +21,9 @@ import {Text12, Text14, Text16, Text26, Text32} from 'components';
 import {find, isObject, toString} from 'lodash';
 import {appStore} from 'stores';
 import {timeConvert} from 'core/utils';
+import {IMAGE_BASE_URL} from 'configs';
+import {MovieReviewType} from 'core/types';
+import {MovieReview} from '../components';
 
 type Props = {
   navigation: any;
@@ -28,12 +31,13 @@ type Props = {
 };
 
 const MovieDetailScreen = (props: Props) => {
-  const {movieDetail} = useMovieDetailFunctions(props);
+  const {movieDetail, movieReviews} = useMovieDetailFunctions(props);
 
   const [isLoading, setLoading] = useState(false);
   const [scrollYState] = useState(
     new Animated.Value(Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0),
   );
+  console.log('movieReviews', movieReviews);
 
   const scrollY = Animated.add(
     scrollYState,
@@ -73,7 +77,6 @@ const MovieDetailScreen = (props: Props) => {
   });
   const {genreList} = appStore.movie;
   const renderScrollViewContent = useCallback(() => {
-    console.log('mobi', movieDetail);
     const genres = movieDetail?.genres ?? [];
     const productionCompanies = movieDetail?.production_companies ?? [];
     return (
@@ -154,27 +157,58 @@ const MovieDetailScreen = (props: Props) => {
         {productionCompanies && productionCompanies.length > 0 ? (
           productionCompanies.map(company => {
             return (
-              <View>
+              <View style={styles.companyInfo} key={company?.id}>
                 <Text14 regular style={styles.textTitle}>
                   Name: {company?.name}
                   {` (${company.origin_country})`}
                 </Text14>
-                <Image
-                  resizeMode={'stretch'}
-                  style={styles.logo}
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/w500${company?.logo_path}`,
-                  }}
-                />
+                {company?.logo_path ? (
+                  <Image
+                    resizeMode={'stretch'}
+                    style={styles.logo}
+                    source={{
+                      uri: `${IMAGE_BASE_URL}${company?.logo_path}`,
+                    }}
+                  />
+                ) : (
+                  <View />
+                )}
+                <View style={styles.line} />
               </View>
             );
           })
         ) : (
           <View />
         )}
+        {movieReviews.length > 0 ? (
+          <>
+            <Text26
+              bold
+              style={StyleSheet.flatten([styles.textTitle, {marginTop: 32}])}>
+              {'Reviews'}
+            </Text26>
+            {movieReviews.map((review: MovieReviewType) => {
+              return <MovieReview item={review} />;
+            })}
+          </>
+        ) : (
+          <View />
+        )}
       </View>
     );
-  }, [genreList, movieDetail]);
+  }, [
+    genreList,
+    movieDetail?.genres,
+    movieDetail?.homepage,
+    movieDetail?.overview,
+    movieDetail?.production_companies,
+    movieDetail?.runtime,
+    movieDetail?.spoken_languages,
+    movieDetail?.title,
+    movieDetail?.vote_average,
+    movieDetail?.vote_count,
+    movieReviews,
+  ]);
   return (
     <View style={styles.container}>
       <StatusBar

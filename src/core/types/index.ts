@@ -27,3 +27,18 @@ export type MovieType = {
     origin_country: string;
   }[];
 };
+
+export type MovieReviewType = {
+  author: string;
+  author_details: {
+    name: string;
+    username: string;
+    avatar_path: string;
+    rating: 6;
+  };
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
+};

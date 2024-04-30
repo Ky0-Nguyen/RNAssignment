@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {toString} from 'lodash';
@@ -16,6 +16,7 @@ type Props = {
 const MovieReview = (props: Props) => {
   const {item} = props;
   const arrRating = Array.from(Array(item?.author_details?.rating ?? 0).keys());
+  const [viewMore, setViewMore] = useState(false);
   const renderRating = () => {
     return (
       <View style={styles.rowRating}>
@@ -54,7 +55,25 @@ const MovieReview = (props: Props) => {
       <Text14 bold style={styles.textName}>
         {'Comment'}
       </Text14>
-      <Text14 regular style={styles.textName}>{`${item?.content}`}</Text14>
+      {viewMore ? (
+        <Text14
+          onPress={() => setViewMore(prev => !prev)}
+          regular
+          style={styles.textName}>
+          {`${item?.content}`}
+        </Text14>
+      ) : (
+        <View style={styles.rowComment}>
+          <Text14 regular numberOfLines={3} style={styles.textName}>
+            {`${item?.content} `}
+          </Text14>
+          <Text14
+            onPress={() => setViewMore(prev => !prev)}
+            style={styles.viewMore}>
+            {'View more'}
+          </Text14>
+        </View>
+      )}
     </View>
   );
 };
@@ -82,5 +101,12 @@ const styles = StyleSheet.create({
   },
   rowRating: {
     flexDirection: 'row',
+  },
+  viewMore: {
+    textDecorationLine: 'underline',
+  },
+  rowComment: {
+    flexWrap: 'wrap',
+    flexDirection: 'column',
   },
 });

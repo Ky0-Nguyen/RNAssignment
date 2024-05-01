@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {
+  ActivityIndicator,
   Animated,
   Image,
   Platform,
@@ -11,7 +12,6 @@ import {
   View,
 } from 'react-native';
 
-import {appStore} from 'stores';
 import {color} from 'core/theme';
 import {observer} from 'mobx-react';
 import {timeConvert} from 'core/utils';
@@ -24,6 +24,7 @@ import {useMovieDetailFunctions} from './useFunctions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Text12, Text14, Text16, Text26, Text32} from 'components';
 import styles, {HEADER_MAX_HEIGHT, HEADER_SCROLL_DISTANCE} from './styles';
+import {movieSDK} from 'moviesdk';
 
 type Props = {
   navigation: any;
@@ -75,7 +76,9 @@ const MovieDetailScreen = (props: Props) => {
     outputRange: [8, 6, -30],
     extrapolate: 'clamp',
   });
-  const {genreList} = appStore.movie;
+
+  const {genreList} = movieSDK.movieStore;
+
   const renderScrollViewContent = useCallback(() => {
     const genres = movieDetail?.genres ?? [];
     const productionCompanies = movieDetail?.production_companies ?? [];
@@ -225,18 +228,28 @@ const MovieDetailScreen = (props: Props) => {
       <Animated.View
         pointerEvents="none"
         style={[styles.header, {transform: [{translateY: headerTranslate}]}]}>
-        <Animated.Image
-          style={[
-            styles.backgroundImage,
-            {
-              opacity: imageOpacity,
-              transform: [{translateY: imageTranslate}],
-            },
-          ]}
-          source={{
-            uri: `https://image.tmdb.org/t/p/w500${movieDetail?.backdrop_path}`,
-          }}
-        />
+        {isLoading ? (
+          <View
+            style={StyleSheet.flatten([
+              styles.container,
+              {alignItems: 'center', justifyContent: 'center'},
+            ])}>
+            <ActivityIndicator size={30} color={color.palette.white} />
+          </View>
+        ) : (
+          <Animated.Image
+            style={[
+              styles.backgroundImage,
+              {
+                opacity: imageOpacity,
+                transform: [{translateY: imageTranslate}],
+              },
+            ]}
+            source={{
+              uri: `https://image.tmdb.org/t/p/w500${movieDetail?.backdrop_path}`,
+            }}
+          />
+        )}
       </Animated.View>
       {/* header no image */}
       <Animated.View
